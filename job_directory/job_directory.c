@@ -1,5 +1,5 @@
 #include "job_directory.h"
-#include "ansi_colors.h"
+
 
 /**
  * generate_hash - Generate SHA-256 hash from input string
@@ -150,14 +150,33 @@ void save_blockchain(Blockchain *chain) {
     }
 
     Job *current = chain->head;
+    int count = 0;
+
+    // Count the number of blocks
     while (current) {
-        fwrite(current, sizeof(Job), 1, file);
+        count++;
         current = current->next;
+    }
+
+    Job *jobs[count];  // Create an array to store the blocks
+    current = chain->head;
+    int i = count - 1;
+
+    // Store blocks in array (reverse order)
+    while (current) {
+        jobs[i--] = current;
+        current = current->next;
+    }
+
+    // Save in correct order (oldest to newest)
+    for (i = 0; i < count; i++) {
+        fwrite(jobs[i], sizeof(Job), 1, file);
     }
 
     fclose(file);
     printf(GREEN "✅ Blockchain saved successfully!\n" RESET);
 }
+
 
 /**
  * load_blockchain - Loads blockchain from a file.
@@ -177,31 +196,36 @@ void load_blockchain(Blockchain *chain) {
     }
     chain->size = 0;
 
-    Job *last_job = NULL;
+    Job *last_job = NULL, *first_job = NULL;
+    Job *jobs[100]; // Temporary array for ordering
 
+    int count = 0;
     while (1) {
         Job *job = (Job *)malloc(sizeof(Job));
-        if (!job) {
-            printf(RED "❌ Memory allocation failed during loading!\n" RESET);
-            break;
-        }
+        if (!job) break;
 
         if (fread(job, sizeof(Job), 1, file) != 1) {
             free(job);
             break;
         }
 
-        job->next = chain->head;
-        chain->head = job;
+        job->next = NULL;
+        jobs[count++] = job;
+    }
+    fclose(file);
 
-        if (last_job) {
-            strcpy(last_job->prev_hash, job->curr_hash);
+    // ✅ Link blocks correctly from oldest to newest
+    for (int i = 0; i < count; i++) {
+        if (i > 0) {
+            jobs[i]->next = jobs[i - 1];
+            strcpy(jobs[i]->prev_hash, jobs[i - 1]->curr_hash);
         }
-        last_job = job;
-        chain->size++;
+        compute_hash(jobs[i]);  // ✅ Recompute hash after loading
     }
 
-    fclose(file);
+    chain->head = jobs[count - 1]; // Oldest job becomes head
+    chain->size = count;
+
     printf(GREEN "✅ Blockchain loaded successfully! Last Block Index: %d\n" RESET, chain->size - 1);
 }
 
@@ -228,9 +252,14 @@ void print_job(Job *job) {
     printf(BLUE "║ 🏢 Company: %-72s║\n" RESET, job->company);
     printf(BLUE "║ 📍 Location: %-71s║\n" RESET, job->location);
     printf(BLUE "║ 🔖 Title: %-74s║\n" RESET, job->title);
+    // ✅ Improved description truncation with clean cut-off
+    char truncated_desc[66];  // Space for 65 characters + '\0'
+strncpy(truncated_desc, job->description, 65);
+truncated_desc[65] = '\0';  // Ensure string is null-terminated
+printf(BLUE "║ 📝 Description: %-68s║\n", truncated_desc);
+
     
-    
-    printf(BLUE "║ 📝 Description: %.65s...║\n" RESET, job->description);
+    // printf(BLUE "║ 📝 Description: %.65s...║\n" RESET, job->description);
     printf(BLUE "╠═════════════════════════════════════════════════════════════════════════════════════╣\n" RESET);
     printf(BLUE "║ ⏳ List Date: %.24s                                              ║\n" RESET, ctime(&job->timestamp));                                  
     printf(BLUE "║ 🔗 Prev Hash: %-70s║\n" RESET, job->prev_hash);
