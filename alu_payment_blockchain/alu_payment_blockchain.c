@@ -277,7 +277,7 @@ if (new_txn->amount <= 0) {
     }
 
     printf("\n");
-    backup_blockchain(chain, wallets, wallet_count); // 🔥 Auto-backup
+
     return 1;
 }
 
@@ -289,6 +289,7 @@ void compute_block_hash(Block *block) {
     sprintf(data, "%d%s%ld%d", block->index, block->previous_hash, block->timestamp, block->nonce);
     generate_hash(data, block->current_hash);
 }
+
 
 /**
  * create_block - Creates a new block in the blockchain.
@@ -309,13 +310,13 @@ Block *create_block(Blockchain *chain, Wallet *wallets, int wallet_count) {
         return NULL;
     }
 
-    new_block->index = chain->size;  // ✅ Correctly sets the block index
+    new_block->index = chain->size;
     new_block->timestamp = time(NULL);
     new_block->nonce = 0;
     new_block->transactions = NULL;
-    new_block->next = NULL;  // ✅ Prevent dangling pointers
+    new_block->next = NULL;
 
-    // ✅ Assign the previous hash
+    // ✅ Assign correct previous hash
     if (chain->head) {
         strcpy(new_block->previous_hash, chain->head->current_hash);
     } else {
@@ -327,33 +328,21 @@ Block *create_block(Blockchain *chain, Wallet *wallets, int wallet_count) {
         new_block->transactions = chain->pending_transactions;
         chain->pending_transactions = NULL;
     } else {
-        printf(YELLOW "⚠️ No transactions found for this block.\n" RESET);
+        printf(YELLOW "\n⚠️ No transactions found for this block.\n" RESET);
     }
 
-    // ⛏️ Perform mining
+    // ✅ Compute correct hash before adding
     mine_block(chain, new_block, wallets, wallet_count, miner_wallet_id);
 
-
     // ✅ Properly link the new block
-    if (chain->head == NULL) {
-        chain->head = new_block;
-    } else {
-        Block *temp = chain->head;
-        while (temp->next != NULL) {
-            temp = temp->next;
-        }
-        temp->next = new_block;
-    }
-
-    // ✅ Correctly increase blockchain size
+    new_block->next = chain->head;
+    chain->head = new_block;
     chain->size++;
 
     printf(GREEN "✅ Block %d created successfully! Total Blocks: %d\n" RESET, new_block->index, chain->size);
-    backup_blockchain(chain, wallets, wallet_count); // 🔥 Auto-backup
+    backup_blockchain(chain, wallets, wallet_count);
     return new_block;
 }
-
-
 
 
 /**
@@ -451,11 +440,12 @@ void mine_block(Blockchain *chain, Block *block, Wallet *wallets, int wallet_cou
         temp->next = reward_txn;
     }
 
-    // ✅ Show in Blockchain transactions
-    printf(GREEN "✅ Mining reward transaction added to block!\n" RESET);
+   
 
     // Display success message
     display_mining_success(block, mining_duration);
+     // ✅ Show in Blockchain transactions
+     printf(GREEN "✅ Mining reward transaction added to block!\n" RESET);
 }
 
 
@@ -477,7 +467,7 @@ snprintf(curr_hash_short, sizeof(curr_hash_short), "%.7s...%.6s",
          block->current_hash, block->current_hash + strlen(block->current_hash) - 6);
 
 
-    printf(BLUE "\n╔════════════════════════════════════════════════════════╗\n" RESET);
+    printf(BLUE   "╔════════════════════════════════════════════════════════╗\n" RESET);
     printf(BLUE   "║                 ⛏️  Block Mined Successfully!           ║\n" RESET);
     printf(BLUE   "╠════════════════════════════════════════════════════════╣\n" RESET);
     printf(BLUE   "║  🔢 Block Index       │ %-4d                           ║\n" RESET, block->index);
@@ -525,7 +515,7 @@ void save_blockchain(Blockchain *chain) {
     }
 
     fclose(file);
-    printf(GREEN "✅ Blockchain saved successfully!\n" RESET);
+    // printf(GREEN "✅ Blockchain saved successfully!\n" RESET);
 }
 
 
@@ -570,8 +560,6 @@ void load_blockchain(Blockchain *chain) {
             break;
         }
 
-        // printf(YELLOW "🧐 Debug: Loaded Block %d | Hash: %.7s...\n" RESET, block->index, block->current_hash);
-
         // ✅ Read transaction count
         int txn_count = 0;
         if (fread(&txn_count, sizeof(int), 1, file) != 1) {
@@ -600,9 +588,10 @@ void load_blockchain(Blockchain *chain) {
             }
             last_txn = new_txn;
 
-            // ✅ Debugging transaction details
-            // printf(YELLOW "🧐 Debug: Loaded Transaction -> Sender: '%s', Receiver: '%s', Amount: %.2f\n" RESET,
-                //    new_txn->sender_id, new_txn->receiver_id, new_txn->amount);
+           // ✅ Restore previous hash links
+        if (last_block) {
+            strcpy(block->previous_hash, last_block->current_hash);
+        }
         }
 
         // ✅ Append block to blockchain
@@ -680,9 +669,22 @@ void print_blockchain(Blockchain *chain) {
 
     Block *current = chain->head;
     while (current != NULL) {
+
+        // Extract first 7 and last 7 characters from the hash
+    char prev_hash_short[20], curr_hash_short[20];  // Increase buffer size
+    snprintf(prev_hash_short, sizeof(prev_hash_short), "%.7s...%.6s", 
+        //  block->previous_hash, block->previous_hash + strlen(block->previous_hash) - 6);
+        current->previous_hash, current->previous_hash + strlen(current->previous_hash) - 6);
+
+snprintf(curr_hash_short, sizeof(curr_hash_short), "%.7s...%.6s", 
+         current->current_hash, current->current_hash + strlen(current->current_hash) - 6);
+
+
         printf(BLUE "\n📜 Block %d\n" RESET, current->index);
-        printf("🔗 Previous Hash: %.16s...\n", current->previous_hash);
-        printf("🔗 Hash: %.16s...\n", current->current_hash);
+        // printf("🔗 Previous Hash: %.16s...\n", current->previous_hash);
+        // printf("🔗 Hash: %.16s...\n", current->current_hash);
+        printf("🔗 Previous Hash: %s\n", prev_hash_short);
+        printf("🔗 Hash: %s\n", curr_hash_short);
         printf("⏳ Timestamp: %s", ctime(&current->timestamp));
         printf("💸 Transactions:\n");
 
@@ -764,16 +766,34 @@ void view_transaction_history(Blockchain *chain) {
 /**
  * validate_chain - Ensures blockchain integrity.
  */
+
 int validate_chain(Blockchain *chain) {
+    if (!chain || !chain->head) {
+        printf(RED "❌ Error: Blockchain is empty.\n" RESET);
+        return 0;
+    }
+
     Block *current = chain->head;
-    while (current && current->next) {
-        if (strcmp(current->previous_hash, current->next->current_hash) != 0) {
+    char computed_hash[HASH_SIZE];
+
+    while (current->next) {  // Loop through blocks
+        compute_block_hash(current);  // Recalculate hash for comparison
+        strcpy(computed_hash, current->current_hash);
+
+        if (strcmp(current->current_hash, computed_hash) != 0) {
+            printf(RED "⚠️ Block %d's hash is invalid!\n" RESET, current->index);
+            return 0;
+        }
+
+        if (strcmp(current->next->previous_hash, current->current_hash) != 0) {
             printf(RED "⚠️ Blockchain broken between Block %d and Block %d!\n" RESET, current->index, current->next->index);
             return 0;
         }
+
         current = current->next;
     }
-    printf(GREEN "✅ Blockchain integrity verified.\n" RESET);
+
+    printf(GREEN "✅ Blockchain integrity verified. No issues detected.\n" RESET);
     return 1;
 }
 
@@ -865,7 +885,8 @@ int main() {
                 scanf("%64s", private_key);
 
                 if (add_transaction(chain, wallets, wallet_count, sender_id, receiver_id, amount, private_key)) {
-                    printf(GREEN "✅ Transaction confirmed and added!\n" RESET);
+                    // printf(GREEN "✅ Transaction confirmed and added!\n" RESET);
+                    printf(GREEN "\n" RESET);
                 } else {
                     printf(RED "❌ Transaction failed.\n" RESET);
                 }
@@ -873,7 +894,6 @@ int main() {
 
             case 5:
                 create_block(chain, wallets, wallet_count);
-                backup_blockchain(chain, wallets, wallet_count);
                 break;
             
 

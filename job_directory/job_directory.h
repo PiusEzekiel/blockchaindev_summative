@@ -53,7 +53,7 @@ Blockchain *initialize_blockchain(void);
 void generate_hash(const char *input, char *output);
 void compute_hash(Job *job);
 int add_job(Blockchain *chain, const char *title, const char *company, const char *location, const char *description);
-Job *search_jobs(Blockchain *chain, const char *keyword);
+void search_jobs(Blockchain *chain, const char *keyword);
 int verify_blockchain(Blockchain *chain);
 void free_blockchain(Blockchain *chain);
 void print_job(Job *job);

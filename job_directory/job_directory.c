@@ -109,34 +109,98 @@ int verify_blockchain(Blockchain *chain) {
 /**
  * search_jobs - Searches for jobs by keyword.
  */
-Job *search_jobs(Blockchain *chain, const char *keyword) {
+// Job *search_jobs(Blockchain *chain, const char *keyword) {
+//     Job *current = chain->head;
+//     Job *results = NULL;
+//     Job *last_result = NULL;
+
+//     while (current) {
+//         if (strstr(current->title, keyword) || strstr(current->company, keyword) || strstr(current->location, keyword)) {
+//             Job *match = (Job *)malloc(sizeof(Job));
+//             if (!match) {
+//                 current = current->next;
+//                 continue;
+//             }
+//             memcpy(match, current, sizeof(Job));
+//             match->next = NULL;
+
+//             if (!results) {
+//                 results = match;
+//                 last_result = match;
+//             } else {
+//                 last_result->next = match;
+//                 last_result = match;
+//             }
+//         }
+//         current = current->next;
+//     }
+
+//     return results;
+// }
+
+
+/**
+ * to_lowercase - Converts a string to lowercase for case-insensitive search
+ */
+void to_lowercase(char *str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = tolower((unsigned char)str[i]);
+    }
+}
+
+/**
+ * search_jobs - Improved search with case-insensitive, partial match, and description search.
+ */
+void search_jobs(Blockchain *chain, const char *keyword) {
+    if (!chain || !chain->head) {
+        printf(RED "❌ No job listings available.\n" RESET);
+        return;
+    }
+
+    char lower_keyword[50];  // Convert keyword to lowercase for case-insensitive search
+    strncpy(lower_keyword, keyword, sizeof(lower_keyword) - 1);
+    lower_keyword[sizeof(lower_keyword) - 1] = '\0';
+    to_lowercase(lower_keyword);
+
     Job *current = chain->head;
-    Job *results = NULL;
-    Job *last_result = NULL;
+    int found = 0;
+
+    printf(GREEN "\n🔎 Search Results for: \"%s\"\n" RESET, keyword);
 
     while (current) {
-        if (strstr(current->title, keyword) || strstr(current->company, keyword) || strstr(current->location, keyword)) {
-            Job *match = (Job *)malloc(sizeof(Job));
-            if (!match) {
-                current = current->next;
-                continue;
-            }
-            memcpy(match, current, sizeof(Job));
-            match->next = NULL;
+        char lower_title[MAX_TITLE_LENGTH], lower_company[MAX_COMPANY_LENGTH], lower_location[MAX_LOCATION_LENGTH], lower_description[MAX_DESCRIPTION_LENGTH];
 
-            if (!results) {
-                results = match;
-                last_result = match;
-            } else {
-                last_result->next = match;
-                last_result = match;
-            }
+        // Convert job fields to lowercase for case-insensitive comparison
+        strncpy(lower_title, current->title, MAX_TITLE_LENGTH);
+        strncpy(lower_company, current->company, MAX_COMPANY_LENGTH);
+        strncpy(lower_location, current->location, MAX_LOCATION_LENGTH);
+        strncpy(lower_description, current->description, MAX_DESCRIPTION_LENGTH);
+
+        lower_title[MAX_TITLE_LENGTH - 1] = '\0';
+        lower_company[MAX_COMPANY_LENGTH - 1] = '\0';
+        lower_location[MAX_LOCATION_LENGTH - 1] = '\0';
+        lower_description[MAX_DESCRIPTION_LENGTH - 1] = '\0';
+
+        to_lowercase(lower_title);
+        to_lowercase(lower_company);
+        to_lowercase(lower_location);
+        to_lowercase(lower_description);
+
+        // Check for keyword match in title, company, location, or description
+        if (strstr(lower_title, lower_keyword) || strstr(lower_company, lower_keyword) ||
+            strstr(lower_location, lower_keyword) || strstr(lower_description, lower_keyword)) {
+            print_job(current);
+            found = 1;
         }
+
         current = current->next;
     }
 
-    return results;
+    if (!found) {
+        printf(RED "❌ No matching job found.\n" RESET);
+    }
 }
+
 
 
 /**
@@ -300,14 +364,15 @@ void display_menu(void) {
 int main(void) {
     Blockchain *chain = initialize_blockchain();
     load_blockchain(chain);
-
+    
     int choice;
-    char title[MAX_TITLE_LENGTH], company[MAX_COMPANY_LENGTH], location[MAX_LOCATION_LENGTH], description[MAX_DESCRIPTION_LENGTH], keyword[50];
+    char title[MAX_TITLE_LENGTH], company[MAX_COMPANY_LENGTH], location[MAX_LOCATION_LENGTH], description[MAX_DESCRIPTION_LENGTH];
+    char keyword[50];  // Stores the user's search keyword
 
     while (1) {
         display_menu();
         scanf("%d", &choice);
-        getchar();
+        getchar(); // Clear newline character from buffer
 
         switch (choice) {
         case 1:
@@ -331,16 +396,9 @@ int main(void) {
             break;
 
         case 3:
-            get_string_input(YELLOW "Enter search keyword: " RESET, keyword, sizeof(keyword));
-            Job *results = search_jobs(chain, keyword);
-            if (!results)
-                printf(RED "❌ No matching job found.\n" RESET);
-            else
-                while (results) {
-                    print_job(results);
-                    results = results->next;
-                }
-            break;
+        get_string_input(YELLOW "Enter search keyword: " RESET, keyword, sizeof(keyword));
+        search_jobs(chain, keyword);
+        break;
 
         case 4:
             verify_blockchain(chain);
