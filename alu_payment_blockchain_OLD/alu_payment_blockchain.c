@@ -673,7 +673,7 @@ void print_blockchain(Blockchain *chain) {
         // Extract first 7 and last 7 characters from the hash
     char prev_hash_short[20], curr_hash_short[20];  // Increase buffer size
     snprintf(prev_hash_short, sizeof(prev_hash_short), "%.7s...%.6s", 
-        //  block->previous_hash, block->previous_hash + strlen(block->previous_hash) - 6);
+        
         current->previous_hash, current->previous_hash + strlen(current->previous_hash) - 6);
 
 snprintf(curr_hash_short, sizeof(curr_hash_short), "%.7s...%.6s", 
@@ -681,14 +681,14 @@ snprintf(curr_hash_short, sizeof(curr_hash_short), "%.7s...%.6s",
 
 
         printf(BLUE "\n📜 Block %d\n" RESET, current->index);
-        // printf("🔗 Previous Hash: %.16s...\n", current->previous_hash);
-        // printf("🔗 Hash: %.16s...\n", current->current_hash);
         printf("🔗 Previous Hash: %s\n", prev_hash_short);
         printf("🔗 Hash: %s\n", curr_hash_short);
         printf("⏳ Timestamp: %s", ctime(&current->timestamp));
         printf("💸 Transactions:\n");
 
         Transaction *txn = current->transactions;
+
+
         while (txn) {
             if (strlen(txn->sender_id) == 0 || strlen(txn->receiver_id) == 0) { 
                 printf("   ❌ Invalid transaction detected. Skipping...\n");
