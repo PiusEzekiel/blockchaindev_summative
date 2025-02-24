@@ -130,4 +130,5 @@ void view_transaction_history(Blockchain *chain);
 void display_mining_success(Block *block, double mining_duration);
 void free_blockchain(Blockchain *chain);
 
+
 #endif // ALU_PAYMENT_BLOCKCHAIN_H

@@ -99,7 +99,6 @@ valgrind --leak-check=full ./job_directory
 ## Submission Contents
 Ensure the following files are included:
 - `job_directory.c` (Main source code)
-- `blockchain_utils.c`, `input_utils.c`, `search_utils.c` (Modular components)
 - `job_directory.h` (Header file)
 - `README.md` (This document)
 - `output.txt` (Example output file)
@@ -107,7 +106,4 @@ Ensure the following files are included:
 - `job_directory.out` (Compiled executable file)
 
 ---
-
-## Conclusion
-This job directory blockchain provides a **secure**, **tamper-proof**, and **verifiable** way to store job listings. It applies blockchain principles such as **cryptographic hashing**, **proof-of-work mining**, and **data integrity checks** to ensure the reliability of job listings.
 
