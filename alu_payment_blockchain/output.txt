@@ -1,0 +1,492 @@
+pius@AsusPC:/mnt/c/Users/piuse/ALU_PROJECTS/Blockchain Y3T2/blockchaindev_summative/alu_payment_blockchain$ ./alu_payment_blockchain.out
+⚠️ No existing blockchain found. Starting fresh.
+⚠️ No existing wallets found. Starting fresh.
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 1
+Enter Student ID: Sam
+Enter Student Name: Samuel Babachuku
+Enter a Private Key (DO NOT SHARE!): sam11
+✅ Wallet Created: Sam | Balance: 1000.00 ALU Tokens
+🔑 Private Key Hash Saved (DO NOT SHARE PRIVATE KEY!)
+🔑 Wallet ID Hash: 4ecde249d747d51d869ae689c44cc1e6191b581b8315edac97990fdc4dce40d7
+✅ Student 'Samuel Babachuku' (ID: Sam) successfully created with wallet balance of 1000 ALU Tokens.
+💾 Auto-backup completed successfully!
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 2
+Enter Vendor ID: Ada
+Enter Vendor Name: Adamma Ngoxi
+Enter a Private Key (DO NOT SHARE!): ada11
+✅ Wallet Created: Ada | Balance: 0.00 ALU Tokens
+🔑 Private Key Hash Saved (DO NOT SHARE PRIVATE KEY!)
+🔑 Wallet ID Hash: 99a563ab2f6e21e96998f9fddd2a2bab82b70ac019579502b8d7fc0032ff62bb
+✅ Vendor 'Adamma Ngoxi' (ID: Ada) successfully created with wallet balance of 0 ALU Tokens.
+💾 Auto-backup completed successfully!
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 2
+Enter Vendor ID: Finance
+Enter Vendor Name: Finance Account
+Enter a Private Key (DO NOT SHARE!): finance11
+✅ Wallet Created: Finance | Balance: 0.00 ALU Tokens
+🔑 Private Key Hash Saved (DO NOT SHARE PRIVATE KEY!)
+🔑 Wallet ID Hash: b696d75511dc16f2b52563e3113a498311a79866f4672862197aa9a8c5c0da12
+✅ Vendor 'Finance Account' (ID: Finance) successfully created with wallet balance of 0 ALU Tokens.
+💾 Auto-backup completed successfully!
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 5
+Sender Wallet ID: Sam
+Receiver Wallet ID: Ada
+Enter amount: 230
+Enter your private key: sam11
+
+ Confirm Transaction:
+   You are about to send funds to: Ada
+   Receiver's Hashed ID: 99a563ab2f6e21e96998f9fddd2a2bab82b70ac019579502b8d7fc0032ff62bb
+Is this the correct receiver? (y/n): y
+✅ Confirmed and initilizing Transaction..... 
+Transaction Created -> Sender: 'Sam', Receiver: 'Ada', Amount: 230.00
+What is the funds for?
+1. Tuition
+2. Cafeteria
+3. Library Fine
+4. Event Ticket
+5. Gift
+6. Refund
+Enter choice (1-4): 5
+✅ Transaction completed: Sam sent 230.00 ALU tokens to Ada for Gift
+
+
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 3
+Enter wallet ID: Sam
+💰 Wallet: Sam | Balance: 770.00 ALU Tokens
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 4
+
+╔════════════════════════════════════════════════════╗
+║                  💰 Wallets List                   ║
+╠════════════════════════════════════════════════════╣
+║  No.  │  Wallet ID        │  Balance (ALU Tokens)  ║
+╠════════════════════════════════════════════════════╣
+║  1    │ Sam               │     770.00 ALU Tokens  ║
+║  2    │ Ada               │     230.00 ALU Tokens  ║
+║  3    │ Finance           │       0.00 ALU Tokens  ║
+╚════════════════════════════════════════════════════╝
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 5
+Sender Wallet ID: Ada
+Receiver Wallet ID: Finance
+Enter amount: 500
+Enter your private key: ada11
+
+ Confirm Transaction:
+   You are about to send funds to: Finance
+   Receiver's Hashed ID: b696d75511dc16f2b52563e3113a498311a79866f4672862197aa9a8c5c0da12
+Is this the correct receiver? (y/n): y
+❌ Error: Insufficient funds.
+❌ Transaction failed.
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 5
+Sender Wallet ID: Ada
+Receiver Wallet ID: Finance
+Enter amount: 200
+Enter your private key: ada11
+
+ Confirm Transaction:
+   You are about to send funds to: Finance
+   Receiver's Hashed ID: b696d75511dc16f2b52563e3113a498311a79866f4672862197aa9a8c5c0da12
+Is this the correct receiver? (y/n): y
+✅ Confirmed and initilizing Transaction..... 
+Transaction Created -> Sender: 'Ada', Receiver: 'Finance', Amount: 200.00
+What is the funds for?
+1. Tuition
+2. Cafeteria
+3. Library Fine
+4. Event Ticket
+5. Gift
+6. Refund
+Enter choice (1-4): 1
+✅ Transaction completed: Ada sent 200.00 ALU tokens to Finance for Tuition
+⛏️ Auto-mining started due to 2 transactions...
+Enter Miner Wallet ID: Sam
+🎉 Miner Reward: Sam received 10 ALU Tokens!
+╔════════════════════════════════════════════════════════╗
+║                 ⛏️  Block Mined Successfully!           ║
+╠════════════════════════════════════════════════════════╣
+║  🔢 Block Index       │ 0                              ║
+║  🔗 Previous Hash     │ 0000000...000000               ║
+║  🔗 Current Hash      │ 00000f8...8b6ea4               ║
+║  🔢 Nonce             │ 38036                          ║
+║  ⏳ Mining Time       │ 0.07 seconds                   ║
+║  🔥 Difficulty Level  │ 4                              ║
+╚════════════════════════════════════════════════════════╝
+✅ Mining reward transaction added to block!
+✅ Block 0 created successfully! Total Blocks: 1
+💾 Auto-backup completed successfully!
+
+
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 9
+
+╔══════════════════════════════════════════════════════════════════╗
+║                           🏢 Vendors List                        ║
+╠══════════════════════════════════════════════════════════════════╣
+║  No.  │  Vendor Name         │  Vendor ID      │  Balance (ALU)  ║
+╠══════════════════════════════════════════════════════════════════╣
+║  1    │ Adamma Ngoxi         │ Ada             │      30.00      ║
+║  2    │ Finance Account      │ Finance         │     200.00      ║
+╚══════════════════════════════════════════════════════════════════╝
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 10
+
+                              === Transaction History ===
++----------------------------------------------------------------------------------------+
+🔹 Sam sent 230.00 ALU tokens to Ada for Gift on Mon Feb 24 22:00:18 2025
+🔹 Ada sent 200.00 ALU tokens to Finance for Tuition on Mon Feb 24 22:04:47 2025
+🔹 Blockchain sent 10.00 ALU tokens to Sam for Mining Reward on Mon Feb 24 22:04:56 2025
++----------------------------------------------------------------------------------------+
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 11
+
+╔════════════════════════════════════════════╗
+║             🏦 ALU Token Supply            ║
+╠════════════════════════════════════════════╣
+║  🔹 Token Name         │ ALU Token         ║
+║  🏦 Total Supply       │ 1000000           ║
+║  💸 Circulating Supply │ 1010              ║
+╚════════════════════════════════════════════╝
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 14
+✅ Blockchain integrity verified. No issues detected.
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 6
+Enter Miner Wallet ID: Ada
+
+⚠️ No transactions found for this block.
+🎉 Miner Reward: Ada received 10 ALU Tokens!
+╔════════════════════════════════════════════════════════╗
+║                 ⛏️  Block Mined Successfully!           ║
+╠════════════════════════════════════════════════════════╣
+║  🔢 Block Index       │ 1                              ║
+║  🔗 Previous Hash     │ 00000f8...8b6ea4               ║
+║  🔗 Current Hash      │ 000027e...25ac3c               ║
+║  🔢 Nonce             │ 189456                         ║
+║  ⏳ Mining Time       │ 0.32 seconds                   ║
+║  🔥 Difficulty Level  │ 4                              ║
+╚════════════════════════════════════════════════════════╝
+✅ Mining reward transaction added to block!
+✅ Block 1 created successfully! Total Blocks: 2
+💾 Auto-backup completed successfully!
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 7
+
+📜 Block 1
+🔗 Previous Hash: 00000f8...8b6ea4
+🔗 Hash: 000027e...25ac3c
+⏳ Timestamp: Mon Feb 24 22:09:50 2025
+💸 Transactions:
+   🔹 Blockchain sent 10.00 ALU tokens to Ada for Mining Reward
+╠═══════════════════════════════════════════════════════╣
+
+📜 Block 0
+🔗 Previous Hash: 0000000...000000
+🔗 Hash: 00000f8...8b6ea4
+⏳ Timestamp: Mon Feb 24 22:04:56 2025
+💸 Transactions:
+   🔹 Sam sent 230.00 ALU tokens to Ada for Gift
+   🔹 Ada sent 200.00 ALU tokens to Finance for Tuition
+   🔹 Blockchain sent 10.00 ALU tokens to Sam for Mining Reward
+
+✅ End of Blockchain.
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 14
+✅ Blockchain integrity verified. No issues detected.
+
+=== ALU Payment Blockchain ===
+1. Create Student Wallet
+2. Create Vendor Wallet
+3. View Wallet Balance
+4. View ALL Wallets
+5. Make Payment (Transaction)
++-----------------------------+
+6. Mine Block
+7. View Blockchain
+8. List Students
+9. List Vendors
+10. View Transaction History
+11. View ALU Token Supply
++-----------------------------+
+12. Backup Blockchain & Wallets
+13. Load Blockchain & Wallets
+14. Verify Blockchain Integrity
+15. Exit
+Enter your choice: 
