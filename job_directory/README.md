@@ -1,109 +1,83 @@
-# Job Directory Blockchain
+# **📌 Job Directory Blockchain**
 
-## Overview
-This project implements a blockchain-based job directory that ensures job listings are securely stored, immutable, and verifiable. The blockchain structure uses cryptographic hashing and proof-of-work (PoW) mining to maintain data integrity and prevent unauthorized modifications.
-
-## Features
-- **Add Job Listings:** Stores job details as blockchain blocks.
-- **Search Jobs:** Allows searching for job listings by title, company, or location.
-- **Blockchain Integrity Verification:** Ensures data has not been tampered with.
-- **Proof-of-Work Mining:** Uses a hashing mechanism to mine jobs securely.
-- **Data Persistence:** Saves and loads blockchain data from a file.
+## **🎯 Project Overview**
+The **Job Directory Blockchain** is a secure **blockchain-based job listing system** that ensures **immutable job postings**, **tamper-proof records**, and **verifiable job history** using cryptographic hashing and Proof-of-Work (PoW) mining.
 
 ---
 
-## Compilation and Execution
-### **Compilation**
+## **🚀 Key Features**
+✔️ **Decentralized Job Listings on Blockchain**  
+✔️ **Tamper-Proof Job Records with SHA-256 Hashing**  
+✔️ **Search Jobs by Title, Company, or Location**  
+✔️ **Proof-of-Work Mining for Secure Entry Validation**  
+✔️ **Blockchain Integrity Verification to Detect Tampering**  
+✔️ **Persistent Data Storage with File Backup**  
+✔️ **User-Friendly CLI for Job Management**  
+
+---
+
+## **🔹 Installation**
+
+### **1️⃣ Prerequisites**
+Ensure you have the following installed:
+- **GCC (GNU Compiler Collection)**
+- **OpenSSL** (for cryptographic hashing)
+- **Valgrind** (for memory leak checks) *(optional)*
+
+---
+
+### **2️⃣ Compilation**
 To compile the program, run:
 ```sh
-gcc job_directory.c -o job_directory.out -lcrypto
+gcc -o job_directory.out job_directory.c -lcrypto
 ```
 
-### **Execution**
-To run the program:
+---
+
+### **3️⃣ Running the Program**
+To execute the job directory blockchain system:
 ```sh
-./job_directory
+./job_directory.out
 ```
 
 ---
 
-## Blockchain Principles Used
-- **Immutable Job Entries:** Each job listing is stored as a block with a cryptographic hash linking to the previous job.
-- **SHA-256 Hashing:** Ensures data integrity by generating unique block hashes.
-- **Proof-of-Work (Mining):** Each job listing requires computational work (nonce calculation) to validate its entry.
-- **Integrity Checks:** Prevents data tampering by verifying hashes in the blockchain.
+## **📜 How to Use (CLI Menu Functions)**
+
+### **1️⃣ Add a Job Listing**
+- Enter **Job Title, Company, Location, and Description**
+- Job is **stored in the blockchain** and **mined using Proof-of-Work**
+- Blockchain is **updated securely**
+
+### **2️⃣ View All Job Listings**
+- Displays **all jobs recorded in the blockchain**
+- Shows **block index, job details, and cryptographic hash**
+
+### **3️⃣ Search for a Job**
+- Find job listings by **Title, Company, or Location**
+
+### **4️⃣ Verify Blockchain Integrity**
+- Ensures **job records are untampered**
+- Detects if **any block has been altered**
+
+### **5️⃣ Backup & Load Blockchain Data**
+- Saves blockchain state for **persistence across sessions**
+- Loads previously saved **job data from a file**
 
 ---
 
-## Hashing Mechanism
-Each block's hash is generated using **SHA-256** by combining:
-- **Index**
-- **Job Title**
-- **Company**
-- **Location**
-- **Description**
-- **Timestamp**
-- **Previous Hash**
-- **Nonce** (computed for mining)
-
-Hashing ensures that even a minor modification in any field will change the hash, making tampering easily detectable.
+## **🔒 Security Features**
+✅ **SHA-256 Cryptographic Hashing** for job record protection  
+✅ **Blockchain Linkage (Previous Block Hash)** ensures tamper detection  
+✅ **Proof-of-Work Mining (Nonce Calculation)** prevents spamming of job entries  
+✅ **Integrity Verification Mechanism** detects data modifications  
 
 ---
 
-## Example Output
-### **Adding a Job Listing**
-```plaintext
-✅ Job added successfully and mined as Block 1!
-```
-
-### **Searching for a Job**
-```plaintext
-📜 Job Listing (Block 0)
-📍 Frontend Developer at ALU (Kigali)
-📝 Description: Seeking a frontend developer for our team.
-🔗 Hash: 0000abcd1234...
-```
-
-### **Verifying Blockchain Integrity**
-```plaintext
-✅ Blockchain integrity verified. No issues detected.
-```
-
-### **Tampering Detection**
-```plaintext
-⚠️ Blockchain broken between Blocks 2 and 1!
-```
-
----
-
-## Documentation
-For a detailed explanation of the implementation, cryptographic security, and challenges faced, refer to `documentation.pdf`.
-
----
-
-## Code Quality Checks
-### **Memory Leak Detection**
-Run the following command to check for memory leaks:
-```sh
-valgrind --leak-check=full ./job_directory
-```
-
-### **Best Practices Followed**
-- Modular code structure
-- Consistent function naming
-- Proper memory allocation and deallocation
-- Commented and well-documented functions
-
----
-
-## Submission Contents
-Ensure the following files are included:
-- `job_directory.c` (Main source code)
-- `job_directory.h` (Header file)
-- `README.md` (This document)
-- `output.txt` (Example output file)
-- `documentation.pdf` (Detailed explanation of blockchain usage)
-- `job_directory.out` (Compiled executable file)
-
----
+## **📂 Project Files**
+📌 **job_directory.c** – Main source code  
+📌 **job_directory.h** – Header file  
+📌 **README.md** – This document  
+📌 **output.txt** – Example output file  
+📌 **job_directory.out** – Compiled executable file  
 
