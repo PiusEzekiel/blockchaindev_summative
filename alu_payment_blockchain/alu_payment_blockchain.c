@@ -1,5 +1,5 @@
-
 #include "alu_payment_blockchain.h"
+
 
 int difficulty = 4;  // Start difficulty at 4
 
@@ -1059,7 +1059,7 @@ void view_transaction_history(Blockchain *chain) {
  */
 
 
-int verify_blockchain(Blockchain *chain) {
+int validate_chain(Blockchain *chain) {
     Block *current = chain->head;
     char temp_hash[HASH_LENGTH + 1];
 
@@ -1112,7 +1112,7 @@ void display_menu() {
 }
 
 
-
+#ifndef TESTING
 int main() {
     Blockchain *chain = initialize_blockchain();
     Wallet wallets[MAX_WALLETS];
@@ -1222,7 +1222,7 @@ int student_count = 0, vendor_count = 0;  // Track count
 
             case 14:
                 // validate_chain(chain);
-                verify_blockchain(chain);
+                validate_chain(chain);
                 break;
 
             case 15:
@@ -1232,3 +1232,6 @@ int student_count = 0, vendor_count = 0;  // Track count
         }
     }
 }
+
+
+#endif // Testing

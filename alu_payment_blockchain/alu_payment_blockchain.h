@@ -110,26 +110,21 @@ void create_wallet(Wallet *wallets, int *wallet_count, Blockchain *chain,
 void view_balance(Wallet *wallets, int wallet_count, const char *wallet_id);
 Block *create_block(Blockchain *chain, Wallet *wallets, int wallet_count, 
     Student *students, int student_count, Vendor *vendors, int vendor_count);
-// void mine_block(Block *block, Wallet *wallets, int wallet_count, const char *miner_wallet_id);
 void mine_block(Blockchain *chain, Block *block, Wallet *wallets, int wallet_count, const char *miner_wallet_id);
 void compute_block_hash(Block *block);  // Function prototype to avoid implicit declaration warning
 int verify_transaction(Wallet *wallets, int wallet_count, const char *wallet_id, const char *private_key);
 void print_blockchain(Blockchain *chain);
-// int validate_chain(Blockchain *chain);
-int verify_blockchain(Blockchain *chain);
+int validate_chain(Blockchain *chain);
 void save_blockchain(Blockchain *chain);
-// void backup_blockchain(Blockchain *chain, Wallet *wallets, int wallet_count);
 void backup_blockchain(Blockchain *chain, Wallet *wallets, Student *students, int student_count, Vendor *vendors, int vendor_count, int wallet_count);
 void load_blockchain(Blockchain *chain);
-// void save_wallets(Wallet *wallets, int wallet_count);
 void save_wallets(Wallet *wallets, Student *students, int student_count, Vendor *vendors, int vendor_count, int wallet_count);
-
-// void load_wallets(Wallet *wallets, int *wallet_count, Blockchain *chain);
 void load_wallets(Wallet *wallets, Student *students, int *student_count, Vendor *vendors, int *vendor_count, int *wallet_count, Blockchain *chain);
-
 void generate_keys(char *public_key, char *private_key);
 void get_string_input(const char *prompt, char *buffer, size_t size);
 void list_wallets(Wallet *wallets, int wallet_count);
+void create_student(Student *students, int *student_count, Wallet *wallets, int *wallet_count, Blockchain *chain);
+void create_vendor(Vendor *vendors, int *vendor_count, Wallet *wallets, int *wallet_count, Blockchain *chain);
 void update_student_vendor_wallets(Student *students, int student_count, Vendor *vendors, int vendor_count, Wallet *wallets, int wallet_count);
 void view_transaction_history(Blockchain *chain);
 void display_mining_success(Block *block, double mining_duration);

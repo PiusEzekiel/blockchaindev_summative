@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "alu_payment_blockchain.h": "c"
+        "alu_payment_blockchain.h": "c",
+        "stdio.h": "c"
     }
 }
