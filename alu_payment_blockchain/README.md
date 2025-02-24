@@ -1,4 +1,4 @@
-# ** ALU Payment Blockchain**  
+# **ALU Payment Blockchain**  
 **A Secure, Decentralized Payment System for ALU Transactions**
 
 ---
